@@ -55,6 +55,7 @@ const Home = ()=>{
       if(response.status !== 200){
         console.log('failed');
       }else{
+        getTheDetails();
         console.log('updated')
       }
     }catch(error){
@@ -67,6 +68,7 @@ const Home = ()=>{
     getTheDetails();
   },[]);
 
+  // handle submit
   const handleSubmit = async (e)=>{
     e.preventDefault();
     const contentBody = {title, author, genre};
@@ -79,6 +81,7 @@ const Home = ()=>{
       if(response.status !== 200){
         alert('some shit went wrong')
       }else{
+        getTheDetails();
         resetForm();
         console.log('data was successfully submitted')
       }
@@ -106,6 +109,7 @@ const Home = ()=>{
       if(response.status !== 200){
         console.log('failed');
       }else{
+        getTheDetails();
         console.log('deleted')
       }
     }catch(error){
@@ -129,7 +133,7 @@ const Home = ()=>{
       </div>
       <div>
         <ul>
-          {data.map((singleData)=>{
+          {data?.map((singleData)=>{
             const {bookAuthor, bookGenre, bookTitle, id} = singleData;
             return (
               <li className={styles.listItem} key={id}>
